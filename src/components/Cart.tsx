@@ -7,7 +7,7 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet';
 import { useCartStore } from '@/store/cartStore';
-import { MinusIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/outline';
+import { MinusIcon, PlusIcon, TrashIcon, DocumentDuplicateIcon } from '@heroicons/react/24/outline';
 import { toast } from 'sonner';
 
 export const Cart = () => {
@@ -33,6 +33,39 @@ export const Cart = () => {
     window.open(whatsappUrl, '_blank');
     
     toast.success('Redirecting to WhatsApp...');
+  };
+
+  const handleCopyOrder = async () => {
+    if (items.length === 0) {
+      toast.error('Your cart is empty');
+      return;
+    }
+
+    const message = decodeURIComponent(generateWhatsAppMessage());
+    
+    try {
+      await navigator.clipboard.writeText(message);
+      toast.success('Order copied to clipboard! Paste it into WhatsApp.');
+    } catch (error) {
+      // Fallback for browsers that don't support clipboard API
+      const textArea = document.createElement('textarea');
+      textArea.value = message;
+      textArea.style.position = 'fixed';
+      textArea.style.left = '-999999px';
+      textArea.style.top = '-999999px';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      
+      try {
+        document.execCommand('copy');
+        toast.success('Order copied to clipboard! Paste it into WhatsApp.');
+      } catch (err) {
+        toast.error('Failed to copy order. Please note down your items manually.');
+      }
+      
+      document.body.removeChild(textArea);
+    }
   };
 
   const total = getTotalPrice();
@@ -120,16 +153,26 @@ export const Cart = () => {
                 </Button>
                 
                 <Button 
-                  variant="outline" 
-                  onClick={clearCart} 
+                  variant="outline"
+                  onClick={handleCopyOrder}
                   className="w-full font-body"
+                >
+                  <DocumentDuplicateIcon className="h-4 w-4 mr-2" />
+                  Copy Order Details
+                </Button>
+                
+                <Button 
+                  variant="ghost" 
+                  onClick={clearCart} 
+                  className="w-full font-body text-muted-foreground"
                 >
                   Clear Cart
                 </Button>
               </div>
               
               <p className="text-xs text-muted-foreground font-body text-center">
-                Orders placed Monday-Wednesday, delivered Thursday-Saturday
+                Orders placed Monday-Wednesday, delivered Thursday-Saturday<br/>
+                <span className="text-secondary">Tip:</span> If WhatsApp doesn't open, use "Copy Order Details" and paste into WhatsApp manually
               </p>
             </div>
           )}
