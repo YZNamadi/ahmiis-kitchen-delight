@@ -13,9 +13,16 @@ export interface CartItem extends MenuItem {
   quantity: number;
 }
 
+export interface CustomerDetails {
+  name: string;
+  deliveryAddress: string;
+  preferredDeliveryDay: string;
+}
+
 interface CartStore {
   items: CartItem[];
   isOpen: boolean;
+  customerDetails: CustomerDetails;
   addItem: (item: MenuItem) => void;
   removeItem: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
@@ -24,6 +31,7 @@ interface CartStore {
   closeCart: () => void;
   getTotalItems: () => number;
   getTotalPrice: () => number;
+  setCustomerDetails: (details: CustomerDetails) => void;
   generateWhatsAppMessage: () => string;
 }
 
@@ -32,6 +40,11 @@ export const useCartStore = create<CartStore>()(
     (set, get) => ({
       items: [],
       isOpen: false,
+      customerDetails: {
+        name: '',
+        deliveryAddress: '',
+        preferredDeliveryDay: 'Thursday',
+      },
       
       addItem: (item) => {
         const items = get().items;
@@ -83,17 +96,28 @@ export const useCartStore = create<CartStore>()(
         return get().items.reduce((total, item) => total + (item.price * item.quantity), 0);
       },
       
+      setCustomerDetails: (details) => {
+        set({ customerDetails: details });
+      },
+      
       generateWhatsAppMessage: () => {
         const items = get().items;
         const total = get().getTotalPrice();
+        const customer = get().customerDetails;
         
         let message = "Hello! I'd like to place an order from Ahmiis Kitchen:\n\n";
+        message += "ORDER SUMMARY:\n";
         
         items.forEach((item) => {
           message += `• ${item.name} x${item.quantity} - £${(item.price * item.quantity).toFixed(2)}\n`;
         });
         
-        message += `\nTotal: £${total.toFixed(2)}\n\nThank you!`;
+        message += `\nTotal: £${total.toFixed(2)}\n\n`;
+        message += `CUSTOMER DETAILS:\n`;
+        message += `Name: ${customer.name}\n`;
+        message += `Delivery Address: ${customer.deliveryAddress}\n`;
+        message += `Preferred Delivery Day: ${customer.preferredDeliveryDay}\n\n`;
+        message += "Thank you!";
         
         return encodeURIComponent(message);
       },

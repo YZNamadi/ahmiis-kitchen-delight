@@ -1,4 +1,7 @@
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import {
   Sheet,
   SheetContent,
@@ -6,9 +9,10 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet';
-import { useCartStore } from '@/store/cartStore';
+import { useCartStore, CustomerDetails } from '@/store/cartStore';
 import { MinusIcon, PlusIcon, TrashIcon, DocumentDuplicateIcon } from '@heroicons/react/24/outline';
 import { toast } from 'sonner';
+import { useState } from 'react';
 
 export const Cart = () => {
   const {
@@ -20,11 +24,29 @@ export const Cart = () => {
     clearCart,
     getTotalPrice,
     generateWhatsAppMessage,
+    customerDetails,
+    setCustomerDetails,
   } = useCartStore();
+  
+  const [showCustomerForm, setShowCustomerForm] = useState(false);
+  
+  const handleInputChange = (field: keyof CustomerDetails, value: string) => {
+    setCustomerDetails({
+      ...customerDetails,
+      [field]: value,
+    });
+  };
 
   const handleCheckout = () => {
     if (items.length === 0) {
       toast.error('Your cart is empty');
+      return;
+    }
+
+    // Validate customer details
+    if (!customerDetails.name.trim() || !customerDetails.deliveryAddress.trim()) {
+      setShowCustomerForm(true);
+      toast.error('Please provide your name and delivery address');
       return;
     }
 
@@ -136,8 +158,61 @@ export const Cart = () => {
             )}
           </div>
 
+          {/* Customer Details Form */}
+          {items.length > 0 && (showCustomerForm || !customerDetails.name.trim() || !customerDetails.deliveryAddress.trim()) && (
+            <div className="border-t border-border pt-4 space-y-4">
+              <h3 className="font-body font-semibold">Customer Details</h3>
+              <div className="space-y-3">
+                <div>
+                  <Label htmlFor="customer-name" className="font-body text-sm">Name *</Label>
+                  <Input
+                    id="customer-name"
+                    placeholder="Enter your full name"
+                    value={customerDetails.name}
+                    onChange={(e) => handleInputChange('name', e.target.value)}
+                    className="mt-1"
+                  />
+                </div>
+                
+                <div>
+                  <Label htmlFor="delivery-address" className="font-body text-sm">Delivery Address *</Label>
+                  <Input
+                    id="delivery-address"
+                    placeholder="Enter your full address"
+                    value={customerDetails.deliveryAddress}
+                    onChange={(e) => handleInputChange('deliveryAddress', e.target.value)}
+                    className="mt-1"
+                  />
+                </div>
+                
+                <div>
+                  <Label htmlFor="delivery-day" className="font-body text-sm">Preferred Delivery Day</Label>
+                  <Select value={customerDetails.preferredDeliveryDay} onValueChange={(value) => handleInputChange('preferredDeliveryDay', value)}>
+                    <SelectTrigger className="mt-1">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Thursday">Thursday</SelectItem>
+                      <SelectItem value="Friday">Friday</SelectItem>
+                      <SelectItem value="Saturday">Saturday</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <Button 
+                  onClick={() => setShowCustomerForm(false)}
+                  variant="outline"
+                  className="w-full font-body"
+                  disabled={!customerDetails.name.trim() || !customerDetails.deliveryAddress.trim()}
+                >
+                  Continue to Checkout
+                </Button>
+              </div>
+            </div>
+          )}
+
           {/* Cart Footer */}
-          {items.length > 0 && (
+          {items.length > 0 && (!showCustomerForm && customerDetails.name.trim() && customerDetails.deliveryAddress.trim()) && (
             <div className="border-t border-border pt-4 space-y-4">
               <div className="flex justify-between items-center font-body font-semibold text-lg">
                 <span>Total:</span>
@@ -159,6 +234,14 @@ export const Cart = () => {
                 >
                   <DocumentDuplicateIcon className="h-4 w-4 mr-2" />
                   Copy Order Details
+                </Button>
+                
+                <Button 
+                  variant="ghost" 
+                  onClick={() => setShowCustomerForm(true)}
+                  className="w-full font-body text-muted-foreground"
+                >
+                  Edit Customer Details
                 </Button>
                 
                 <Button 
