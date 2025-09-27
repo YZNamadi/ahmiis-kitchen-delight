@@ -1,11 +1,10 @@
 import { Button } from '@/components/ui/button';
-import { Layout } from '@/components/Layout';
 import { Link } from 'react-router-dom';
 import heroImage from '@/assets/hero-image.jpg';
 
 const Index = () => {
   return (
-    <Layout>
+    <>
       {/* Hero Section */}
       <section 
         className="relative h-screen flex items-center justify-center bg-cover bg-center"
@@ -120,7 +119,7 @@ const Index = () => {
           </Button>
         </div>
       </section>
-    </Layout>
+    </>
   );
 };
 

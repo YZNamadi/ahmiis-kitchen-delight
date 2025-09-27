@@ -1,18 +1,15 @@
-import { Layout } from '@/components/Layout';
-
 const About = () => {
   return (
-    <Layout>
-      <div className="py-20 bg-background">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6 text-primary">
-              About Ahmiis Kitchen
-            </h1>
-            <p className="text-xl font-body text-muted-foreground">
-              Where tradition meets taste
-            </p>
-          </div>
+    <div className="py-20 bg-background">
+      <div className="container mx-auto px-4 max-w-4xl">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6 text-primary">
+            About Ahmiis Kitchen
+          </h1>
+          <p className="text-xl font-body text-muted-foreground">
+            Where tradition meets taste
+          </p>
+        </div>
 
           <div className="space-y-8">
             <div className="bg-card p-8 rounded-lg shadow-sm border">
@@ -95,10 +92,9 @@ const About = () => {
                 <p>✉️ amiiskitchen88@gmail.com</p>
               </div>
             </div>
-          </div>
         </div>
       </div>
-    </Layout>
+    </div>
   );
 };
 

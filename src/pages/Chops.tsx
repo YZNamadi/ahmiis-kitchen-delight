@@ -1,4 +1,3 @@
-import { Layout } from '@/components/Layout';
 import { MenuItem } from '@/components/MenuItem';
 import { MenuItem as MenuItemType } from '@/store/cartStore';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -69,8 +68,7 @@ const Chops = () => {
   ];
 
   return (
-    <Layout>
-      <div className="py-20 bg-background">
+    <div className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6 text-primary">
@@ -187,10 +185,9 @@ const Chops = () => {
             <p className="font-body text-sm text-muted-foreground mt-4">
               All chops packages are made fresh to order and perfect for sharing!
             </p>
-          </div>
         </div>
       </div>
-    </Layout>
+    </div>
   );
 };
 

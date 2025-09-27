@@ -1,4 +1,3 @@
-import { Layout } from '@/components/Layout';
 import { MenuItem } from '@/components/MenuItem';
 import { MenuItem as MenuItemType } from '@/store/cartStore';
 
@@ -26,9 +25,8 @@ const Drinks = () => {
   ];
 
   return (
-    <Layout>
-      <div className="py-20 bg-background">
-        <div className="container mx-auto px-4">
+    <div className="py-20 bg-background">
+      <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6 text-primary">
               Drinks Menu
@@ -66,7 +64,7 @@ const Drinks = () => {
                 Non-alcoholic beverages bursting with flavor and creativity
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {mocktails.map((item) => (
                 <MenuItem key={item.id} item={item} showDescription />
               ))}
@@ -137,8 +135,7 @@ const Drinks = () => {
             </div>
           </section>
         </div>
-      </div>
-    </Layout>
+    </div>
   );
 };
 

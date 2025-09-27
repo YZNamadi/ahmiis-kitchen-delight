@@ -1,4 +1,3 @@
-import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -41,8 +40,7 @@ const Catering = () => {
   ];
 
   return (
-    <Layout>
-      <div className="py-20 bg-background">
+    <div className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6 text-primary">
@@ -179,10 +177,9 @@ const Catering = () => {
                 </a>
               </Button>
             </div>
-          </div>
         </div>
       </div>
-    </Layout>
+    </div>
   );
 };
 
