@@ -103,8 +103,8 @@ export const Cart = () => {
         </SheetHeader>
 
         <div className="flex flex-col h-full">
-          {/* Cart Items */}
-          <div className="flex-1 overflow-y-auto py-6">
+          {/* Scrollable Content: Items + Customer Details */}
+          <div className="flex-1 overflow-y-auto py-6 space-y-6">
             {items.length === 0 ? (
               <div className="text-center text-muted-foreground font-body">
                 Your cart is empty
@@ -156,64 +156,64 @@ export const Cart = () => {
                 ))}
               </div>
             )}
+
+            {/* Customer Details Form inside scroll area */}
+            {items.length > 0 && showCustomerForm && (
+              <div className="border-t border-border pt-4 space-y-4">
+                <h3 className="font-body font-semibold">Customer Details</h3>
+                <div className="space-y-3">
+                  <div>
+                    <Label htmlFor="customer-name" className="font-body text-sm">Name *</Label>
+                    <Input
+                      id="customer-name"
+                      placeholder="Enter your full name"
+                      value={customerDetails.name}
+                      onChange={(e) => handleInputChange('name', e.target.value)}
+                      className="mt-1"
+                    />
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="delivery-address" className="font-body text-sm">Delivery Address *</Label>
+                    <Input
+                      id="delivery-address"
+                      placeholder="Enter your full address"
+                      value={customerDetails.deliveryAddress}
+                      onChange={(e) => handleInputChange('deliveryAddress', e.target.value)}
+                      className="mt-1"
+                    />
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="delivery-day" className="font-body text-sm">Preferred Delivery Day</Label>
+                    <Select value={customerDetails.preferredDeliveryDay} onValueChange={(value) => handleInputChange('preferredDeliveryDay', value)}>
+                      <SelectTrigger className="mt-1">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Thursday">Thursday</SelectItem>
+                        <SelectItem value="Friday">Friday</SelectItem>
+                        <SelectItem value="Saturday">Saturday</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <Button 
+                    onClick={() => setShowCustomerForm(false)}
+                    variant="outline"
+                    className="w-full font-body"
+                    disabled={!customerDetails.name.trim() || !customerDetails.deliveryAddress.trim()}
+                  >
+                    Continue to Checkout
+                  </Button>
+                </div>
+              </div>
+            )}
           </div>
 
-          {/* Customer Details Form */}
-          {items.length > 0 && showCustomerForm && (
-            <div className="border-t border-border pt-4 space-y-4">
-              <h3 className="font-body font-semibold">Customer Details</h3>
-              <div className="space-y-3">
-                <div>
-                  <Label htmlFor="customer-name" className="font-body text-sm">Name *</Label>
-                  <Input
-                    id="customer-name"
-                    placeholder="Enter your full name"
-                    value={customerDetails.name}
-                    onChange={(e) => handleInputChange('name', e.target.value)}
-                    className="mt-1"
-                  />
-                </div>
-                
-                <div>
-                  <Label htmlFor="delivery-address" className="font-body text-sm">Delivery Address *</Label>
-                  <Input
-                    id="delivery-address"
-                    placeholder="Enter your full address"
-                    value={customerDetails.deliveryAddress}
-                    onChange={(e) => handleInputChange('deliveryAddress', e.target.value)}
-                    className="mt-1"
-                  />
-                </div>
-                
-                <div>
-                  <Label htmlFor="delivery-day" className="font-body text-sm">Preferred Delivery Day</Label>
-                  <Select value={customerDetails.preferredDeliveryDay} onValueChange={(value) => handleInputChange('preferredDeliveryDay', value)}>
-                    <SelectTrigger className="mt-1">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Thursday">Thursday</SelectItem>
-                      <SelectItem value="Friday">Friday</SelectItem>
-                      <SelectItem value="Saturday">Saturday</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                <Button 
-                  onClick={() => setShowCustomerForm(false)}
-                  variant="outline"
-                  className="w-full font-body"
-                  disabled={!customerDetails.name.trim() || !customerDetails.deliveryAddress.trim()}
-                >
-                  Continue to Checkout
-                </Button>
-              </div>
-            </div>
-          )}
-
-          {/* Cart Footer */}
+          {/* Cart Footer (always visible) */}
           {items.length > 0 && !showCustomerForm && (
-            <div className="border-t border-border pt-4 space-y-4">
+            <div className="border-t border-border pt-4 space-y-4 bg-background">
               <div className="flex justify-between items-center font-body font-semibold text-lg">
                 <span>Total:</span>
                 <span className="text-secondary">£{total.toFixed(2)}</span>
