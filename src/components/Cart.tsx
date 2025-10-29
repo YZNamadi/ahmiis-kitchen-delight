@@ -28,7 +28,7 @@ export const Cart = () => {
     setCustomerDetails,
   } = useCartStore();
   
-  const [showCustomerForm, setShowCustomerForm] = useState(false);
+  const [showCustomerForm, setShowCustomerForm] = useState(!customerDetails.name.trim() || !customerDetails.deliveryAddress.trim());
   
   const handleInputChange = (field: keyof CustomerDetails, value: string) => {
     setCustomerDetails({
@@ -159,7 +159,7 @@ export const Cart = () => {
           </div>
 
           {/* Customer Details Form */}
-          {items.length > 0 && (showCustomerForm || !customerDetails.name.trim() || !customerDetails.deliveryAddress.trim()) && (
+          {items.length > 0 && showCustomerForm && (
             <div className="border-t border-border pt-4 space-y-4">
               <h3 className="font-body font-semibold">Customer Details</h3>
               <div className="space-y-3">
@@ -212,7 +212,7 @@ export const Cart = () => {
           )}
 
           {/* Cart Footer */}
-          {items.length > 0 && (!showCustomerForm && customerDetails.name.trim() && customerDetails.deliveryAddress.trim()) && (
+          {items.length > 0 && !showCustomerForm && (
             <div className="border-t border-border pt-4 space-y-4">
               <div className="flex justify-between items-center font-body font-semibold text-lg">
                 <span>Total:</span>
