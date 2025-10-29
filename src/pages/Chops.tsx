@@ -9,21 +9,27 @@ const Chops = () => {
       name: 'Fundamental Package',
       price: 25,
       category: 'chops',
-      description: '15pcs Puff Puff • 3 Meat Pies • 7 Beef Samosa • 7 Veg Spring Rolls • 5 Chicken Wings'
+      description: '15pcs Puff Puff • 3 Meat Pies • 7 Beef Samosa • 7 Veg Spring Rolls • 5 Chicken Wings',
+      imageUrl: '/images/fundamental-chops.jpg',
+      imageAlt: 'Fundamental chops package platter'
     },
     {
       id: 'deluxe-chops',
       name: 'Deluxe Package',
       price: 50,
       category: 'chops',
-      description: '30pcs Puff Puff • 6 Meat Pies • 14 Beef Samosa • 14 Veg Spring Rolls • 10 Chicken Wings'
+      description: '30pcs Puff Puff • 6 Meat Pies • 14 Beef Samosa • 14 Veg Spring Rolls • 10 Chicken Wings',
+      imageUrl: '/images/deluxe-chops.jpg',
+      imageAlt: 'Deluxe chops package platter'
     },
     {
       id: 'premium-chops',
       name: 'Premium Package',
       price: 100,
       category: 'chops',
-      description: '60pcs Puff Puff • 9 Meat Pies • 25 Beef Samosa • 25 Veg Spring Rolls • 10 Chicken Kebabs • 20 Chicken Wings'
+      description: '60pcs Puff Puff • 9 Meat Pies • 25 Beef Samosa • 25 Veg Spring Rolls • 10 Chicken Kebabs • 20 Chicken Wings',
+      imageUrl: '/images/premium-chops.jpg',
+      imageAlt: 'Premium chops package platter'
     }
   ];
 

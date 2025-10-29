@@ -22,3 +22,28 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# OS and system files
+Thumbs.db
+
+# Coverage and caches
+coverage/
+.eslintcache
+.vite/
+.cache/
+.parcel-cache/
+
+# TypeScript build info
+*.tsbuildinfo
+
+# Environment files
+.env
+.env.*
+.env.local
+
+# Tool caches
+.npm/
+.yarn/
+
+# Merge backup files
+*.orig

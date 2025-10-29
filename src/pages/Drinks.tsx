@@ -3,25 +3,25 @@ import { MenuItem as MenuItemType } from '@/store/cartStore';
 
 const Drinks = () => {
   const cocktails: MenuItemType[] = [
-    { id: 'long-island', name: 'Long Island', price: 8, category: 'cocktails', description: 'Classic Long Island Iced Tea with premium spirits' },
-    { id: 'mojito', name: 'Mojito', price: 7, category: 'cocktails', description: 'Fresh mint mojito with white rum and lime' },
-    { id: 'classic-martini', name: 'Classic Martini', price: 9, category: 'cocktails', description: 'Elegant gin or vodka martini, dry or dirty' },
-    { id: 'passion-fruit', name: 'Passion Fruit', price: 7.5, category: 'cocktails', description: 'Tropical passion fruit cocktail with vodka' },
-    { id: 'daiquiri', name: 'Daiquiri', price: 7, category: 'cocktails', description: 'Classic rum daiquiri with fresh lime juice' },
-    { id: 'tequila-sunrise', name: 'Tequila Sunrise', price: 7.5, category: 'cocktails', description: 'Beautiful layered tequila cocktail with grenadine' },
-    { id: 'champagne', name: 'Champagne', price: 12, category: 'cocktails', description: 'Premium champagne selection' },
-    { id: 'holiday', name: 'Holiday', price: 8.5, category: 'cocktails', description: 'Special seasonal holiday cocktail' },
-    { id: 'whiskey-sour', name: 'Whiskey Sour', price: 8, category: 'cocktails', description: 'Classic whiskey sour with fresh lemon and egg white' },
+    { id: 'long-island', name: 'Long Island', price: 8, category: 'cocktails', description: 'Classic Long Island Iced Tea with premium spirits', imageUrl: '/images/long-island.jpg', imageAlt: 'Long Island Iced Tea cocktail' },
+    { id: 'mojito', name: 'Mojito', price: 7, category: 'cocktails', description: 'Fresh mint mojito with white rum and lime', imageUrl: '/images/mojito.jpg', imageAlt: 'Mojito with lime and mint' },
+    { id: 'classic-martini', name: 'Classic Martini', price: 9, category: 'cocktails', description: 'Elegant gin or vodka martini, dry or dirty', imageUrl: '/images/classic-martini.jpg', imageAlt: 'Classic martini cocktail' },
+    { id: 'passion-fruit', name: 'Passion Fruit', price: 7.5, category: 'cocktails', description: 'Tropical passion fruit cocktail with vodka', imageUrl: '/images/passion-fruit.jpg', imageAlt: 'Passion fruit cocktail' },
+    { id: 'daiquiri', name: 'Daiquiri', price: 7, category: 'cocktails', description: 'Classic rum daiquiri with fresh lime juice', imageUrl: '/images/daiquiri.jpg', imageAlt: 'Rum daiquiri cocktail' },
+    { id: 'tequila-sunrise', name: 'Tequila Sunrise', price: 7.5, category: 'cocktails', description: 'Beautiful layered tequila cocktail with grenadine', imageUrl: '/images/tequila-sunrise.jpg', imageAlt: 'Tequila Sunrise cocktail' },
+    { id: 'champagne', name: 'Champagne', price: 12, category: 'cocktails', description: 'Premium champagne selection', imageUrl: '/images/champagne.jpg', imageAlt: 'Champagne flute' },
+    { id: 'holiday', name: 'Holiday', price: 8.5, category: 'cocktails', description: 'Special seasonal holiday cocktail', imageUrl: '/images/holiday.jpg', imageAlt: 'Festive holiday cocktail' },
+    { id: 'whiskey-sour', name: 'Whiskey Sour', price: 8, category: 'cocktails', description: 'Classic whiskey sour with fresh lemon and egg white', imageUrl: '/images/whiskey-sour.jpg', imageAlt: 'Whiskey sour cocktail' },
   ];
 
   const mocktails: MenuItemType[] = [
-    { id: 'blue-pina-colada', name: 'Blue Pina Colada', price: 5.5, category: 'mocktails', description: 'Tropical blue coconut and pineapple blend' },
-    { id: 'bubble-signature', name: 'Bubble Signature', price: 6, category: 'mocktails', description: 'House special bubble drink with fresh fruits' },
-    { id: 'kiwi-fizz', name: 'Kiwi Fizz', price: 5, category: 'mocktails', description: 'Refreshing kiwi and sparkling water cocktail' },
-    { id: 'wavy', name: 'Wavy', price: 5.5, category: 'mocktails', description: 'Layered fruit mocktail with tropical flavors' },
-    { id: 'cinnamon-mimosa', name: 'Cinnamon Mimosa', price: 6, category: 'mocktails', description: 'Sparkling apple cider with cinnamon and orange' },
-    { id: 'mimosa', name: 'Mimosa', price: 5, category: 'mocktails', description: 'Classic sparkling orange juice mocktail' },
-    { id: 'whipped-cream-mimosa', name: 'Whipped Cream Mimosa', price: 6.5, category: 'mocktails', description: 'Indulgent mimosa topped with fresh whipped cream' },
+    { id: 'blue-pina-colada', name: 'Blue Pina Colada', price: 5.5, category: 'mocktails', description: 'Tropical blue coconut and pineapple blend', imageUrl: '/images/blue-pina-colada.jpg', imageAlt: 'Blue pina colada mocktail' },
+    { id: 'bubble-signature', name: 'Bubble Signature', price: 6, category: 'mocktails', description: 'House special bubble drink with fresh fruits', imageUrl: '/images/bubble-signature.jpg', imageAlt: 'Fruit bubble drink' },
+    { id: 'kiwi-fizz', name: 'Kiwi Fizz', price: 5, category: 'mocktails', description: 'Refreshing kiwi and sparkling water cocktail', imageUrl: '/images/kiwi-fizz.jpg', imageAlt: 'Kiwi fizz mocktail' },
+    { id: 'wavy', name: 'Wavy', price: 5.5, category: 'mocktails', description: 'Layered fruit mocktail with tropical flavors', imageUrl: '/images/wavy.jpg', imageAlt: 'Layered tropical mocktail' },
+    { id: 'cinnamon-mimosa', name: 'Cinnamon Mimosa', price: 6, category: 'mocktails', description: 'Sparkling apple cider with cinnamon and orange', imageUrl: '/images/cinnamon-mimosa.jpg', imageAlt: 'Cinnamon mimosa drink' },
+    { id: 'mimosa', name: 'Mimosa', price: 5, category: 'mocktails', description: 'Classic sparkling orange juice mocktail', imageUrl: '/images/mimosa-mocktail.jpg', imageAlt: 'Non-alcoholic mimosa' },
+    { id: 'whipped-cream-mimosa', name: 'Whipped Cream Mimosa', price: 6.5, category: 'mocktails', description: 'Indulgent mimosa topped with fresh whipped cream', imageUrl: '/images/whipped-cream-mimosa.jpg', imageAlt: 'Mimosa with whipped cream' },
   ];
 
   return (

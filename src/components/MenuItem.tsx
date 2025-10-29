@@ -33,6 +33,20 @@ export const MenuItem = ({ item, showDescription = false }: MenuItemProps) => {
         )}
       </CardHeader>
       <CardContent className="pt-0">
+        {item.imageUrl && (
+          <div className="mb-4 overflow-hidden rounded-md border">
+            <img
+              src={item.imageUrl}
+              alt={item.imageAlt || item.name}
+              className="w-full h-40 object-cover"
+              loading="lazy"
+              referrerPolicy="no-referrer"
+              onError={(e) => {
+                e.currentTarget.src = '/placeholder.svg';
+              }}
+            />
+          </div>
+        )}
         <Button
           onClick={handleAddToCart}
           className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-body font-semibold group"

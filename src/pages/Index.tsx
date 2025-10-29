@@ -31,7 +31,7 @@ const Index = () => {
               asChild 
               variant="outline" 
               size="lg" 
-              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary font-body font-semibold px-8 py-3"
+              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-body font-semibold px-8 py-3"
             >
               <Link to="/catering">Catering Services</Link>
             </Button>
